@@ -6,65 +6,177 @@ Home
 
 {% block content %}
 
-<!-- Hero Banner -->
-<div class="hero-banner">
+<div class="container-fluid px-3 px-md-4 px-lg-5">
 
-    <div class="hero-content">
+    <!-- Hero Section -->
+    <section class="row align-items-center py-4 py-md-5">
 
-        <h5>Welcome To MyStore</h5>
+        <div class="col-12 col-lg-6 text-center text-lg-start">
 
-        <h1>
-            Best deals | Fast Delivery |Secure Shopping <br>
-        </h1>
+            <h5 class="text-primary fw-semibold mb-3">
+                Welcome To MyStore
+            </h5>
 
-        <a href="{{ url_for('products') }}" class="shop-btn">
-            SHOP NOW
-        </a>
-        <div class="image1">
-            <img src=""
+            <h1 class="display-5 fw-bold mb-3">
+                Best Deals |
+                Fast Delivery |
+                Secure Shopping
+            </h1>
+
+            <p class="text-muted fs-5 mb-4">
+                Shop your favorite products at the best prices.
+                Quality products delivered to your doorstep.
+            </p>
+
+            <a
+                href="{{ url_for('products') }}"
+                class="btn btn-primary btn-lg px-5 rounded-3"
+            >
+                🛒 SHOP NOW
+            </a>
+
         </div>
 
-    </div>
 
-</div>
+        <!-- Hero Image -->
+        <div class="col-12 col-lg-6 text-center mt-4 mt-lg-0">
 
-<!-- Featured Products -->
-<h2 class="mb-4">Featured Products</h2>
+            <img
+                src="{{ url_for('static', filename='images/hero.png') }}"
+                class="img-fluid rounded-4"
+                style="max-height:400px; object-fit:cover;"
+                alt="Shopping"
+            >
 
-<div class="row">
+        </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <img src="https://imgs.search.brave.com/S_Qp4Or0CrQKaCpy2PqFgDslK055bAYio01Ff0R2zX8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNzIv/MTE4LzA3Ny9zbWFs/bC9ibGFjay13aXJl/bGVzcy1oZWFkcGhv/bmVzLWZsb2F0aW5n/LWluLWNvbG9yZnVs/LW5lb24tbGlnaHQt/cGhvdG8uanBn" class="card-img-top" alt="Product">
-            <div class="card-body">
-                <h5 class="card-title">Wireless Headphones</h5>
-                <p class="card-text">₹1,999</p>
-                <button class="btn btn-primary w-100">Add to Cart</button>
+    </section>
+
+
+
+    <!-- Featured Products -->
+    <section class="py-4">
+
+        <div class="text-center mb-4">
+
+            <h2 class="fw-bold">
+                Featured Products
+            </h2>
+
+            <p class="text-muted">
+                Explore our latest products
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <!-- Product 1 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+
+                    <img
+                        src="https://imgs.search.brave.com/S_Qp4Or0CrQKaCpy2PqFgDslK055bAYio01Ff0R2zX8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNzIv/MTE4LzA3Ny9zbWFs/bC9ibGFjay13aXJl/bGVzcy1oZWFkcGhv/bmVzLWZsb2F0aW5n/LWluLWNvbG9yZnVs/LW5lb24tbGlnaHQt/cGhvdG8uanBn"
+                        class="card-img-top img-fluid"
+                        style="height:250px; object-fit:cover;"
+                        alt="Wireless Headphones"
+                    >
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Wireless Headphones
+                        </h5>
+
+                        <p class="text-success fw-bold fs-5">
+                            ₹1,999
+                        </p>
+
+                        <button class="btn btn-primary w-100">
+                            🛒 Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <img src="https://imgs.search.brave.com/pso45KqUMm7hLfZ4QYfaZDWE-EnCdaQAqC2UqOtR1Vs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDIyLzEw/L05CL1ZSL1RRLzEz/NDE5NDc1L3doYXRz/YXBwLWltYWdlLTIw/MjItMTAtMzEtYXQt/MS0xOC0zNS1wbS1q/cGVnLTEwMDB4MTAw/MC5qcGVn" class="card-img-top" alt="Product">
-            <div class="card-body">
-                <h5 class="card-title">Smart Watch</h5>
-                <p class="card-text">₹2,999</p>
-                <button class="btn btn-primary w-100">Add to Cart</button>
-            </div>
-        </div>
-    </div>
 
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <img src="https://imgs.search.brave.com/4FbuNxb-E03eQXAB6VZL2p7qa1Av84wlTazKpUKMSNU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzExLzQ2LzIzLzAw/LzM2MF9GXzExNDYy/MzAwMDJfUW9TaDdp/VzlhSFBSdklMSkx2/bWNrdjl5T3pQVm50/U2EuanBn" class="card-img-top" alt="Product">
-            <div class="card-body">
-                <h5 class="card-title">Gaming Mouse</h5>
-                <p class="card-text">₹999</p>
-                <button class="btn btn-primary w-100">Add to Cart</button>
+
+            <!-- Product 2 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+
+                    <img
+                        src="https://imgs.search.brave.com/pso45KqUMm7hLfZ4QYfaZDWE-EnCdaQAqC2UqOtR1Vs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDIyLzEw/L05CL1ZSL1RRLzEz/NDE5NDc1L3doYXRz/YXBwLWltYWdlLTIw/MjItMTAtMzEtYXQt/MS0xOC0zNS1wbS1q/cGVnLTEwMDB4MTAw/MC5qcGVn"
+                        class="card-img-top img-fluid"
+                        style="height:250px; object-fit:cover;"
+                        alt="Smart Watch"
+                    >
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Smart Watch
+                        </h5>
+
+                        <p class="text-success fw-bold fs-5">
+                            ₹2,999
+                        </p>
+
+                        <button class="btn btn-primary w-100">
+                            🛒 Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
+
+
+
+            <!-- Product 3 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+
+                    <img
+                        src="https://imgs.search.brave.com/4FbuNxb-E03eQXAB6VZL2p7qa1Av84wlTazKpUKMSNU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzExLzQ2LzIzLzAw/LzM2MF9GXzExNDYy/MzAwMDJfUW9TaDdp/VzlhSFBSdklMSkx2/bWNrdjl5T3pQVm50/U2EuanBn"
+                        class="card-img-top img-fluid"
+                        style="height:250px; object-fit:cover;"
+                        alt="Gaming Mouse"
+                    >
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            Gaming Mouse
+                        </h5>
+
+                        <p class="text-success fw-bold fs-5">
+                            ₹999
+                        </p>
+
+                        <button class="btn btn-primary w-100">
+                            🛒 Add to Cart
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </div>
-    </div>
+
+    </section>
 
 </div>
 

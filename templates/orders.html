@@ -4,69 +4,178 @@
 
 {% block content %}
 
-<h2 class="text-center mb-4">My Orders</h2>
+<div class="container-fluid py-4">
 
-<table class="table table-bordered table-striped">
+    <!-- Heading -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">
+            📦 My Orders
+        </h2>
 
-    <thead>
+        <p class="text-muted mb-0">
+            Track your orders and download invoices
+        </p>
+    </div>
 
-        <tr>
 
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Invoice</th>
-            <th>Review</th>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
 
-        </tr>
+        <div class="table-responsive">
 
-    </thead>
+            <table class="table table-hover align-middle mb-0">
 
-    <tbody>
 
-        {% for order in orders %}
+                <thead class="table-dark">
 
-        <tr>
+                    <tr>
+                        <th class="text-nowrap">Product</th>
+                        <th class="text-nowrap">Quantity</th>
+                        <th class="text-nowrap">Total</th>
+                        <th class="text-nowrap">Date</th>
+                        <th class="text-nowrap">Status</th>
+                        <th class="text-nowrap">Invoice</th>
+                        <th class="text-nowrap">Review</th>
+                    </tr>
 
-            <td>{{ order[1] }}</td>
+                </thead>
 
-            <td>{{ order[2] }}</td>
 
-            <td>₹{{ order[3] }}</td>
+                <tbody>
 
-            <td>{{ order[4] }}</td>
 
-            <td>
-                <span class="badge bg-primary">
-    {{ order[6] }}
-</span>
-            </td>
+                    {% for order in orders %}
 
-            <td>
 
-                <a href="{{ url_for('invoice', order_id=order[0]) }}"
-                   class="btn btn-primary btn-sm">
+                    <tr>
 
-                    Download PDF
 
-                </a>
+                        <!-- Product -->
+                        <td class="fw-semibold text-nowrap">
+                            {{ order[1] }}
+                        </td>
 
-            </td>
-            <td>
-    <a href="{{ url_for('review', product_id=order[0]) }}"
-       class="btn btn-warning btn-sm">
-        ⭐ Review
-    </a>
-</td>   
 
-        </tr>
+                        <!-- Quantity -->
+                        <td>
+                            {{ order[2] }}
+                        </td>
 
-        {% endfor %}
 
-    </tbody>
+                        <!-- Total -->
+                        <td class="text-success fw-bold text-nowrap">
+                            ₹{{ order[3] }}
+                        </td>
 
-</table>
+
+                        <!-- Date -->
+                        <td class="text-nowrap">
+                            {{ order[4] }}
+                        </td>
+
+
+                        <!-- Status -->
+                        <td>
+
+                            {% if order[6] == "Delivered" %}
+
+                                <span class="badge bg-success">
+                                    {{ order[6] }}
+                                </span>
+
+                            {% elif order[6] == "Shipped" %}
+
+                                <span class="badge bg-warning text-dark">
+                                    {{ order[6] }}
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-primary">
+                                    {{ order[6] }}
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- Invoice -->
+                        <td>
+
+                            <a
+                                href="{{ url_for('invoice', order_id=order[0]) }}"
+                                class="btn btn-primary btn-sm text-nowrap"
+                            >
+                                📄 Download PDF
+                            </a>
+
+                        </td>
+
+
+
+                        <!-- Review -->
+                        <td>
+
+                            <a
+                                href="{{ url_for('review', product_id=order[0]) }}"
+                                class="btn btn-warning btn-sm text-nowrap"
+                            >
+                                ⭐ Review
+                            </a>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% else %}
+
+
+                    <tr>
+
+                        <td
+                            colspan="7"
+                            class="text-center py-5"
+                        >
+
+                            <h5 class="text-muted">
+                                No Orders Found
+                            </h5>
+
+                            <p class="text-muted mb-3">
+                                You haven't placed any orders yet.
+                            </p>
+
+                            <a
+                                href="{{ url_for('products') }}"
+                                class="btn btn-success"
+                            >
+                                🛍️ Shop Now
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
 
 {% endblock %}

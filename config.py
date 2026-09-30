@@ -1,5 +1,8 @@
 import os
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
 
 db = mysql.connector.connect(
     host=os.getenv("DB_HOST", "localhost"),
@@ -11,8 +14,8 @@ db = mysql.connector.connect(
 
 cursor = db.cursor(buffered=True)
 
-RAZORPAY_KEY_ID = os.getenv("rzp_test_TLJTjoSTwdiNSO")
-RAZORPAY_KEY_SECRET = os.getenv("UAUODs7BOqMVjUE4Q6kgTyKB")
+RAZORPAY_KEY_ID = os.getenv("RAZORPAY_KEY_ID")
+RAZORPAY_KEY_SECRET = os.getenv("RAZORPAY_KEY_SECRET")
 
-EMAIL = os.getenv("anmol640singh")
-EMAIL_PASSWORD = os.getenv("anmol.2004")
+EMAIL = os.getenv("EMAIL")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")

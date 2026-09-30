@@ -4,45 +4,136 @@
 
 {% block content %}
 
-<h2 class="text-center mb-4">❤️ My Wishlist</h2>
+<div class="container-fluid py-4">
 
-<div class="row">
 
-{% for item in items %}
+    <!-- Header -->
+    <div class="text-center mb-4">
 
-<div class="col-md-4">
+        <h2 class="fw-bold">
+            ❤️ My Wishlist
+        </h2>
 
-    <div class="card shadow mb-4">
-
-        <img src="{{ url_for('static', filename='uploads/' + item[4]) }}"
-             class="card-img-top"
-             height="250">
-
-        <div class="card-body">
-
-            <h4>{{ item[2] }}</h4>
-
-            <h5 class="text-success">
-                ₹{{ item[3] }}
-            </h5>
-
-            <a href="{{ url_for('add_to_cart', product_id=item[1]) }}"
-               class="btn btn-success w-100">
-                🛒 Add to Cart
-            </a>
-            <a href="{{ url_for('remove_wishlist', id=item[0]) }}"
-   class="btn btn-danger w-100 mt-2">
-    ❌ Remove
-</a>
-
-        </div>
+        <p class="text-muted">
+            Save your favorite products here
+        </p>
 
     </div>
 
+
+
+    <div class="row g-4">
+
+
+        {% for item in items %}
+
+
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+
+
+            <div class="card border-0 shadow-sm rounded-4 h-100 overflow-hidden">
+
+
+                <!-- Product Image -->
+                <img
+                    src="{{ url_for('static', filename='uploads/' + item[4]) }}"
+                    class="card-img-top"
+                    style="height:250px; object-fit:cover;"
+                    alt="{{ item[2] }}"
+                >
+
+
+
+                <!-- Card Body -->
+                <div class="card-body d-flex flex-column">
+
+
+                    <h4 class="fw-bold">
+                        {{ item[2] }}
+                    </h4>
+
+
+
+                    <h4 class="text-success fw-bold mb-4">
+                        ₹{{ item[3] }}
+                    </h4>
+
+
+
+                    <div class="mt-auto">
+
+
+                        <!-- Add To Cart -->
+                        <a
+                            href="{{ url_for('add_to_cart', product_id=item[1]) }}"
+                            class="btn btn-success w-100 mb-2"
+                        >
+                            🛒 Add to Cart
+                        </a>
+
+
+
+                        <!-- Remove Wishlist -->
+                        <a
+                            href="{{ url_for('remove_wishlist', id=item[0]) }}"
+                            class="btn btn-danger w-100"
+                        >
+                            ❌ Remove
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- Empty Wishlist -->
+        <div class="col-12">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body text-center py-5">
+
+                    <h3>
+                        ❤️ Wishlist is Empty
+                    </h3>
+
+                    <p class="text-muted">
+                        Add products you love to your wishlist.
+                    </p>
+
+
+                    <a
+                        href="{{ url_for('products') }}"
+                        class="btn btn-primary"
+                    >
+                        🛍️ Explore Products
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
 </div>
 
-{% endfor %}
-
-</div>
 
 {% endblock %}

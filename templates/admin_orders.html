@@ -4,53 +4,145 @@
 
 {% block content %}
 
-<h2 class="text-center mb-4">📦 Manage Orders</h2>
+<div class="container-fluid py-4">
 
-<table class="table table-bordered table-striped">
+    <!-- Page Heading -->
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Manage Orders</h2>
+            <p class="text-muted mb-0">View and manage customer orders</p>
+        </div>
+    </div>
 
-    <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Product</th>
-        <th>Qty</th>
-        <th>Total</th>
-        <th>Payment</th>
-        <th>Status</th>
-        <th>Date</th>
-        <th>Action</th>
-    </tr>
+    <!-- Orders Card -->
+    <div class="card shadow-sm border-0 rounded-4">
 
-    {% for order in orders %}
+        <div class="card-body p-0">
 
-    <tr>
+            <!-- Responsive Table -->
+            <div class="table-responsive">
 
-        <td>{{ order[0] }}</td>
-        <td>{{ order[1] }}</td>
-        <td>{{ order[2] }}</td>
-        <td>{{ order[3] }}</td>
-        <td>₹{{ order[4] }}</td>
-        <td>{{ order[5] }}</td>
-        <td>{{ order[6] }}</td>
-        <td>{{ order[7] }}</td>
+                <table class="table table-hover align-middle mb-0">
 
-        <td>
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-nowrap">Order ID</th>
+                            <th class="text-nowrap">Customer</th>
+                            <th class="text-nowrap">Product</th>
+                            <th class="text-nowrap">Qty</th>
+                            <th class="text-nowrap">Total</th>
+                            <th class="text-nowrap">Payment</th>
+                            <th class="text-nowrap">Status</th>
+                            <th class="text-nowrap">Date</th>
+                            <th class="text-nowrap">Action</th>
+                        </tr>
+                    </thead>
 
-            <a href="{{ url_for('ship_order', order_id=order[0]) }}"
-               class="btn btn-warning btn-sm">
-               🚚 Ship
-            </a>
+                    <tbody>
 
-            <a href="{{ url_for('deliver_order', order_id=order[0]) }}"
-               class="btn btn-success btn-sm mt-1">
-               ✅ Deliver
-            </a>
+                        {% for order in orders %}
 
-        </td>
+                        <tr>
 
-    </tr>
+                            <td class="fw-semibold">
+                                #{{ order[0] }}
+                            </td>
 
-    {% endfor %}
+                            <td class="text-nowrap">
+                                {{ order[1] }}
+                            </td>
 
-</table>
+                            <td>
+                                <span class="text-nowrap">
+                                    {{ order[2] }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ order[3] }}
+                            </td>
+
+                            <td class="fw-semibold text-success text-nowrap">
+                                ₹{{ order[4] }}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    {{ order[5] }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {% if order[6] == "Delivered" %}
+                                    <span class="badge bg-success">
+                                        {{ order[6] }}
+                                    </span>
+
+                                {% elif order[6] == "Shipped" %}
+                                    <span class="badge bg-warning text-dark">
+                                        {{ order[6] }}
+                                    </span>
+
+                                {% else %}
+                                    <span class="badge bg-secondary">
+                                        {{ order[6] }}
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <td class="text-nowrap">
+                                {{ order[7] }}
+                            </td>
+
+                            <td>
+
+                                <div class="d-flex flex-column flex-sm-row gap-2">
+
+                                    <a
+                                        href="{{ url_for('ship_order', order_id=order[0]) }}"
+                                        class="btn btn-warning btn-sm text-nowrap"
+                                    >
+                                        🚚 Ship
+                                    </a>
+
+                                    <a
+                                        href="{{ url_for('deliver_order', order_id=order[0]) }}"
+                                        class="btn btn-success btn-sm text-nowrap"
+                                    >
+                                        ✅ Deliver
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="9" class="text-center py-5">
+                                <div class="text-muted">
+                                    <h5>No Orders Found</h5>
+                                    <p class="mb-0">
+                                        There are currently no customer orders.
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 {% endblock %}

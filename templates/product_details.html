@@ -4,88 +4,186 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container-fluid py-4">
 
-    <div class="row">
+    <!-- Product Details -->
+    <div class="row g-4 align-items-center">
 
-        <div class="col-md-5">
 
-            <img
-                src="{{ url_for('static', filename='uploads/' + product[5]) }}"
-                class="img-fluid rounded shadow">
+        <!-- Product Image -->
+        <div class="col-12 col-lg-5">
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + product[5]) }}"
+                    class="img-fluid w-100"
+                    style="height:450px; object-fit:cover;"
+                    alt="{{ product[1] }}"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Product Information -->
+        <div class="col-12 col-lg-7">
+
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body p-4">
+
+
+                    <h1 class="fw-bold mb-3">
+                        {{ product[1] }}
+                    </h1>
+
+
+                    <hr>
+
+
+                    <!-- Price -->
+                    <h2 class="text-success fw-bold mb-3">
+                        ₹{{ product[3] }}
+                    </h2>
+
+
+                    <!-- Description -->
+                    <p class="text-muted fs-5">
+                        {{ product[2] }}
+                    </p>
+
+
+                    <!-- Stock -->
+                    <p class="mb-4">
+                        <strong>
+                            Stock Available:
+                        </strong>
+
+                        <span class="badge bg-success">
+                            {{ product[4] }}
+                        </span>
+                    </p>
+
+
+
+                    <!-- Buttons -->
+                    <div class="d-flex flex-column flex-sm-row gap-3">
+
+
+                        <a
+                            href="{{ url_for('add_to_cart', product_id=product[0]) }}"
+                            class="btn btn-success btn-lg w-100"
+                        >
+                            🛒 Add to Cart
+                        </a>
+
+
+                        <a
+                            href="{{ url_for('products') }}"
+                            class="btn btn-secondary btn-lg w-100"
+                        >
+                            ⬅ Back
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
 
         </div>
 
-        <div class="col-md-7">
-
-            <h2>{{ product[1] }}</h2>
-
-            <hr>
-
-            <h3 class="text-success">
-                ₹{{ product[3] }}
-            </h3>
-
-            <p>
-                {{ product[2] }}
-            </p>
-
-            <p>
-                <strong>Stock:</strong>
-                {{ product[4] }}
-            </p>
-
-            <a href="{{ url_for('add_to_cart', product_id=product[0]) }}"
-               class="btn btn-success">
-               🛒 Add to Cart
-            </a>
-
-            <a href="{{ url_for('products') }}"
-               class="btn btn-secondary">
-               ⬅ Back
-            </a>
-
-        </div>
 
     </div>
-    <hr class="mt-5">
 
-<h3 class="mb-4">⭐ Customer Reviews</h3>
 
-{% if reviews %}
 
-    {% for review in reviews %}
+    <!-- Reviews Section -->
 
-    <div class="card mb-3 shadow-sm">
+    <hr class="my-5">
 
-        <div class="card-body">
 
-            <h5>{{ review[0] }}</h5>
+    <div>
 
-            <p class="text-warning">
-                Rating : {{ review[1] }}/5 ⭐
-            </p>
+        <h3 class="fw-bold mb-4">
+            ⭐ Customer Reviews
+        </h3>
 
-            <p>{{ review[2] }}</p>
 
-            <small class="text-muted">
-                {{ review[3] }}
-            </small>
 
-        </div>
+        {% if reviews %}
+
+
+            {% for review in reviews %}
+
+
+            <div class="card border-0 shadow-sm rounded-4 mb-3">
+
+
+                <div class="card-body p-4">
+
+
+                    <h5 class="fw-bold">
+                        {{ review[0] }}
+                    </h5>
+
+
+                    <p class="text-warning mb-2 fw-semibold">
+                        Rating : {{ review[1] }}/5 ⭐
+                    </p>
+
+
+                    <p class="mb-2">
+                        {{ review[2] }}
+                    </p>
+
+
+                    <small class="text-muted">
+                        {{ review[3] }}
+                    </small>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+        {% else %}
+
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body text-center py-4">
+
+                    <h5 class="text-muted mb-0">
+                        No Reviews Available Yet
+                    </h5>
+
+                </div>
+
+            </div>
+
+
+        {% endif %}
+
+
 
     </div>
 
-    {% endfor %}
-
-{% else %}
-
-<div class="alert alert-info">
-    No reviews yet.
-</div>
-
-{% endif %}
 
 </div>
+
 
 {% endblock %}
